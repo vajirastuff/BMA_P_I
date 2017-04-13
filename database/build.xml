@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE project>
+
+<project name="ibrainmart" default="create database" basedir=".">
+
+	<property name="db.dir" value="."/>
+
+	<property file="../src/main/resources/jdbc.properties"/>
+
+	<target name="create database" description="Creating the database">
+		<sql driver="${jdbc.driverClassName}"
+			url="jdbc:mysql://localhost:3306/?useUnicode=true&amp;characterEncoding=UTF8"
+			userid="${jdbc.username}" password="${jdbc.password}"
+			encoding="utf-8" onerror="continue">
+
+			<classpath>
+    			<pathelement location="../WebContent/WEB-INF/lib/mysql-connector-java-5.1.23-bin.jar" />
+			</classpath>
+			
+			<transaction src="${db.dir}/create/database.sql"/>
+			
+			<transaction src="${db.dir}/create/mst_record_items.sql"/>
+			<transaction src="${db.dir}/create/mst_record_items_group.sql"/>
+			<transaction src="${db.dir}/create/tbl_client_basic.sql"/>
+			<transaction src="${db.dir}/create/tbl_organization.sql"/>
+			<transaction src="${db.dir}/create/tbl_organization_group.sql"/>
+			<transaction src="${db.dir}/create/tbl_records.sql"/>
+			<transaction src="${db.dir}/create/tbl_usegroup.sql"/>
+			<transaction src="${db.dir}/create/tbl_user_summary.sql"/>
+			<transaction src="${db.dir}/create/tbl_users.sql"/>
+			<transaction src="${db.dir}/create/tbl_vital.sql"/>
+			<transaction src="${db.dir}/create/tbl_assessment_sheets.sql"/>
+			<transaction src="${db.dir}/create/tbl_keyperson.sql"/>
+			<transaction src="${db.dir}/create/tbl_support_facilities.sql"/>
+			
+			<transaction src="${db.dir}/create/views.sql"/>
+			
+			<transaction src="${db.dir}/insert/mst_record_items.sql"/>
+			<transaction src="${db.dir}/insert/mst_record_items_group.sql"/>
+			<transaction src="${db.dir}/insert/tbl_client_basic.sql"/>			
+			<transaction src="${db.dir}/insert/tbl_organization.sql"/>
+			<transaction src="${db.dir}/insert/tbl_organization_group.sql"/>			
+			<transaction src="${db.dir}/insert/tbl_records.sql"/>
+			<transaction src="${db.dir}/insert/tbl_user_summary.sql"/>			
+			<transaction src="${db.dir}/insert/tbl_users.sql"/>
+			<transaction src="${db.dir}/insert/tbl_assessment_sheets.sql"/>
+			<transaction src="${db.dir}/insert/tbl_vital.sql"/>
+			<transaction src="${db.dir}/insert/tbl_keyperson.sql"/>
+			<transaction src="${db.dir}/insert/tbl_support_facilities.sql"/>
+
+		</sql>
+	</target>
+</project>
